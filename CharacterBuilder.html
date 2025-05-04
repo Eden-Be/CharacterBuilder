@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Characterbuilder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore-compat.js"></script>
+  <script type="module">
+    import {
+      choisirClasse, handleEquipmentClick, equiperItem,
+      desequiperItem, sauvegarderBuild, nouveauBuild, chargerBuild
+    } from './database.js';
+
+    window.choisirClasse = choisirClasse;
+    window.handleEquipmentClick = handleEquipmentClick;
+    window.equiperItem = equiperItem;
+    window.desequiperItem = desequiperItem;
+    window.sauvegarderBuild = sauvegarderBuild;
+    window.nouveauBuild = nouveauBuild;
+    window.chargerBuild = chargerBuild;
+  </script>
+  <link rel="stylesheet" href="Characterbuilder.css">
+  <style>
+    .build-controls {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: rgba(40, 40, 40, 0.8);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .build-controls button,
+    .build-controls select,
+    .build-controls input {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+    }
+    .build-controls label {
+      font-weight: bold;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="Statistique">
+      <div><label for="closeDefence">Close Defence:</label><div id="closeDefence">0</div></div>
+      <div><label for="distanceDefence">Distance Defence:</label><div id="distanceDefence">0</div></div>
+      <div><label for="magicDefence">Magic Defence:</label><div id="magicDefence">0</div></div>
+      <div><label for="defenceDodge">Defence Dodge:</label><div id="defenceDodge">0</div></div>
+      <div><label for="fireResistance">Fire Resistance:</label><div id="fireResistance">0</div></div>
+      <div><label for="waterResistance">Water Resistance:</label><div id="waterResistance">0</div></div>
+      <div><label for="lightResistance">Light Resistance:</label><div id="lightResistance">0</div></div>
+      <div><label for="darkResistance">Dark Resistance:</label><div id="darkResistance">0</div></div>
+      <div><label for="heroic">Heroic:</label><div id="heroic">0</div></div>
+      <div><label for="minDamage">Min Damage:</label><div id="minDamage">0</div></div>
+      <div><label for="maxDamage">Max Damage:</label><div id="maxDamage">0</div></div>
+      <div><label for="hitRate">Hit Rate:</label><div id="hitRate">0</div></div>
+      <div><label for="criticalChance">Critical Chance:</label><div id="criticalChance">0</div></div>
+      <div><label for="criticalDamage">Critical Damage:</label><div id="criticalDamage">0</div></div>
+      <div><label for="concentration">Concentration:</label><div id="concentration">0</div></div>
+    </div>
+  </div>
+
+  <div class="logo-container">
+    <img src="logo-nostale.png" alt="logo">
+
+    <div class="build-controls">
+      <div>
+        <label for="buildName">📝 Nom du build :</label>
+        <input type="text" id="buildName" placeholder="Nom du build">
+      </div>
+      <div>
+        <label for="characterLevel">📊 Niveau du personnage :</label>
+        <input type="number" id="characterLevel" placeholder="Ex: 50" min="1" max="99">
+      </div>
+      <div>
+        <button onclick="sauvegarderBuild()">💾 Sauvegarder le build</button>
+        <button onclick="nouveauBuild()">🔄 Nouveau build</button>
+      </div>
+      <div>
+        <label for="buildsSelect">📂 Builds sauvegardés :</label>
+        <select id="buildsSelect">
+          <option value="">-- Sélectionner un build --</option>
+        </select>
+        <button onclick="chargerBuild()">📥 Charger</button>
+      </div>
+    </div>
+  </div>
+
+  <h1>Characterbuilder</h1>
+
+  <div class="class-selection">
+    <img src="Aventurier.png" onclick="choisirClasse('Aventurier')">
+    <img src="Mage.png" onclick="choisirClasse('Mage')">
+    <img src="Epeiste.png" onclick="choisirClasse('Épéiste')">
+    <img src="Archer.png" onclick="choisirClasse('Archer')">
+  </div>
+
+  <div id="equipment-section" style="display: none;">
+    <div class="equipment-grid">
+      <div class="equipment-slot" data-slot="Slot 1"><button onclick="handleEquipmentClick('Slot 1')">Ntm</button></div>
+      <div class="equipment-slot" data-slot="Slot 2"><button onclick="handleEquipmentClick('Slot 2')">Spécialist</button></div>
+      <div class="equipment-slot" data-slot="Slot 3"><button onclick="handleEquipmentClick('Slot 3')">Fairies</button></div>
+      <div class="equipment-slot" data-slot="Slot 4"><button onclick="handleEquipmentClick('Slot 4')">Arme</button></div>
+
+      <div class="class-center"><img id="class-image" src=""></div>
+
+      <div class="equipment-slot" data-slot="Slot 5"><button onclick="handleEquipmentClick('Slot 5')">Arme secondaire</button></div>
+      <div class="equipment-slot" data-slot="Slot 6"><button onclick="handleEquipmentClick('Slot 6')">Gants</button></div>
+      <div class="equipment-slot" data-slot="Slot 7"><button onclick="handleEquipmentClick('Slot 7')">Armure</button></div>
+      <div class="equipment-slot" data-slot="Slot 8"><button onclick="handleEquipmentClick('Slot 8')">Bottes</button></div>
+    </div>
+  </div>
+
+  <div id="selected-class"></div>
+  <div id="equipment-list" style="margin-top: 20px;"></div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+  color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  flex: 1;
+  max-width: 1000px;
+  padding: 20px;
+  background-color: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  margin: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+  text-align: center;
+  color: #ff79c6;
+  font-size: 2.5em;
+  margin-top: 20px;
+  text-shadow: 2px 2px #000;
+}
+
+.logo-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo-container img {
+  width: 120px;
+  filter: drop-shadow(0 0 5px #000);
+}
+
+.class-selection {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0 40px 40px; 
+  flex-wrap: wrap;
+  width: 80%;
+}
+
+.class-selection img {
+  width: 100px;
+  height: 100px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #444;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.class-selection img:hover {
+  transform: scale(1.1);
+  border-color: #50fa7b;
+  box-shadow: 0 6px 12px rgba(80, 250, 123, 0.5);
+}
+
+#class-image {
+  display: block;
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+  gap: 12px;
+  justify-content: center;
+  margin: 40px auto 0;
+  max-width: 500px;
+  margin-top: 400px;
+}
+
+.equipment-slot {
+  background-color: #282828;
+  border: 1px solid #555;
+  width: 120px;
+  height: 120px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1em;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.equipment-slot:hover {
+  background-color: #50fa7b;
+  transform: scale(1.1);
+  color: #000;
+}
+
+.equipment-slot button {
+  background-color: #444;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.equipment-slot button:hover {
+  background-color: #50fa7b;
+  color: #000;
+}
+
+.class-center {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+#equipment-list {
+  background-color: rgba(50, 50, 50, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 100%; /* Utilise toute la largeur disponible */
+  margin: 20px auto;
+  box-shadow: 0 0 30px rgba(5, 0, 0, 0.5); /* Augmente la largeur de l'ombre */
+  max-height: 865px;
+  overflow-y: auto; /* Permet uniquement le défilement vertical */
+  overflow-x: hidden; /* Désactive le défilement horizontal */
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+}
+
+#equipment-list h3 {
+  color: #f1fa8c;
+  margin-bottom: 10px;
+}
+
+#equipment-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ajoute de l'espace entre les éléments */
+  background-color: #333;
+  padding: 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+}
+
+#equipment-list div:hover {
+  background-color: #444;
+}
+
+#equipment-list img {
+  max-width: 50px; /* Limite la largeur des images */
+  height: auto;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+#equipment-list button {
+  margin-left: auto;
+  background-color: #ff5555;
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
+  font-size: 0.9em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#equipment-list button:hover {
+  background-color: #ff6e6e;
+}
+
+#Statistique {
+  width: 220px;
+  margin: 10px;
+  padding: 8px;
+  background-color: rgba(20, 20, 20, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  height: fit-content;
+  font-size: 0.90em;
+}
+
+#Statistique div {
+  background-color: #2d2d2d;
+  border: 1px solid #444;
+  padding: 3px 5px;
+  border-radius: 6px;
+}
+
+#Statistique label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #e0e0e0;
+  font-size: 0.75em;
+}
+
+#Statistique div > div {
+  font-size: 0.85em;
+  color: #8be9fd;
+}
+
+select, button {
+  font-family: inherit;
+  font-size: 1em;
+  padding: 6px 12px;
+  margin: 5px;
+  border-radius: 6px;
+  border: none;
+}
+
+select {
+  background-color: #333;
+  color: #fff;
+}
+
+select:focus, button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #50fa7b;
+}
+
+button {
+  background-color: #6272a4;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #50fa7b;
+  color: #000;
+}
